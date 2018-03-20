@@ -1,2 +1,0 @@
-# janus-client
-client side

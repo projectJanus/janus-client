@@ -1,0 +1,47 @@
+solarisAtlas.png
+size: 518, 910
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+heavy_subst
+  rotate: false
+  xy: 269, 519
+  size: 134, 134
+  orig: 134, 134
+  offset: 0, 0
+  index: -1
+light_subst
+  rotate: false
+  xy: 1, 777
+  size: 132, 132
+  orig: 132, 132
+  offset: 0, 0
+  index: -1
+medium_subst
+  rotate: false
+  xy: 135, 777
+  size: 132, 132
+  orig: 132, 132
+  offset: 0, 0
+  index: -1
+player
+  rotate: false
+  xy: 1, 1
+  size: 516, 516
+  orig: 516, 516
+  offset: 0, 0
+  index: -1
+touchpad_center
+  rotate: false
+  xy: 269, 655
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+touchpad_zone
+  rotate: false
+  xy: 1, 519
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1

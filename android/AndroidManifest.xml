@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.geekbrains.projectjanus" >
+    package="ru.geekbrains.stargame" >
 
     <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="27" />
 
@@ -10,9 +10,10 @@
         android:label="@string/app_name"
         android:theme="@style/GdxTheme" >
         <activity
-            android:name="com.geekbrains.projectjanus.AndroidLauncher"
-            android:label="@string/app_name" 
-            android:screenOrientation="landscape"
+            android:name="ru.projectjanus.client.AndroidLauncher"
+            android:label="SpaceFlyGun"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
             android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

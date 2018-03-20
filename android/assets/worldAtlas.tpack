@@ -1,0 +1,12 @@
+worldAtlas.png
+size: 2050, 2050
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+world
+  rotate: false
+  xy: 1, 1
+  size: 2048, 2048
+  orig: 2048, 2048
+  offset: 0, 0
+  index: -1
