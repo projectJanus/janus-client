@@ -11,6 +11,7 @@ public class Rnd {
 
     /**
      * Сгенерировать случайное число
+     *
      * @param min минимальное значение случайного числа
      * @param max максимальное значение случайного числа
      * @return результат
@@ -19,7 +20,7 @@ public class Rnd {
         return random.nextFloat() * (max - min) + min;
     }
 
-    public static int nextInt(int min, int max){
+    public static int nextInt(int min, int max) {
         return (int) (random.nextFloat() * (max - min) + min);
     }
 }

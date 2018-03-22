@@ -13,13 +13,8 @@ import ru.projectjanus.client.ui.GuiVisualObject;
 /**
  * Created by raultaylor.
  */
-
 public class Camera {
-
-    private final float SIZE_TARGET = 0.12f;
     private float scale;
-
-    private final Rect GL_RECT = new Rect(0,0,1f,1f);
     private Rect visualZone;
     private Rect currentZone;
     private Matrix4 baseMatrix;
@@ -29,36 +24,11 @@ public class Camera {
     private List<GuiVisualObject> guiVisualObjects;
     private SpriteBatch mainBatch;
     private SpriteBatch guiBatch;
-
     private long deltaTimer;
+    private final float SIZE_TARGET = 0.12f;
+    private final Rect GL_RECT = new Rect(0, 0, 1f, 1f);
 
-    public void setTarget(iVisualObject target){
-        if(target == null){
-            this.target.pos.set(0,0);
-        } else {
-            this.target = target.getRect();
-        }
-    }
-
-    public void setVisualZone(int width, int height){
-        float aspect = (float) width / (float)height;
-        visualZone.setHeight(1f);
-        visualZone.setWidth(aspect * 1f);
-
-        MatrixUtils.calcTransitionMatrix(baseMatrix, visualZone, GL_RECT);
-
-        update();
-    }
-
-    public void setVisualObjects(List<iVisualObject> objectArrayList){
-        this.objectArrayList = objectArrayList;
-    }
-
-    public void setScale(float scale){
-        this.scale = scale;
-    }
-
-    public Camera(){
+    public Camera() {
 
         target = new Rect();
         this.baseMatrix = new Matrix4();
@@ -70,25 +40,38 @@ public class Camera {
         guiBatch = new SpriteBatch();
     }
 
-    public void update(){
-        updateScale();
-        updateCurrentMatrix();
-        updateCurrentZone();
-        mainBatch.setProjectionMatrix(baseMatrix);
-        guiBatch.setProjectionMatrix(baseMatrix);
+    public void addGuiVisualObject(GuiVisualObject object) {
+        if (guiVisualObjects == null) {
+            guiVisualObjects = new ArrayList<GuiVisualObject>();
+        }
+        guiVisualObjects.add(object);
     }
 
-    private void updateScale(){
-        scale=1/(target.getHeight()/SIZE_TARGET);
+    public void addVisualObject(iVisualObject object) {
+        if (objectArrayList == null) {
+            objectArrayList = new ArrayList<iVisualObject>();
+        }
+        objectArrayList.add(object);
     }
 
-    public void render(){
+    public void cleanVisualObjects() {
+        if (objectArrayList == null) {
+            objectArrayList = new ArrayList<iVisualObject>();
+        }
+        objectArrayList.clear();
+    }
+
+    public void dispose() {
+        mainBatch.dispose();
+    }
+
+    public void render() {
 
         deltaTimer = System.currentTimeMillis();
 
         update();
 
-        if(objectArrayList != null && !objectArrayList.isEmpty()) {
+        if (objectArrayList != null && !objectArrayList.isEmpty()) {
             mainBatch.setProjectionMatrix(currentMatrix);
 
             //System.out.println(currentZone);
@@ -97,16 +80,16 @@ public class Camera {
             mainBatch.begin();
             int i = 0;
             for (iVisualObject object : objectArrayList) {
-                if(!currentZone.isOutside(object.getRect())){
+                if (!currentZone.isOutside(object.getRect())) {
                     object.draw(mainBatch);
                     i++;
-                 }
+                }
             }
             mainBatch.end();
             //System.out.println("Draw object: " + i);
         }
 
-        if(guiVisualObjects != null && !guiVisualObjects.isEmpty()) {
+        if (guiVisualObjects != null && !guiVisualObjects.isEmpty()) {
 
             guiBatch.begin();
 
@@ -123,39 +106,52 @@ public class Camera {
 
     }
 
-    private void updateCurrentMatrix(){
-        currentMatrix.idt().set(baseMatrix);
-        currentMatrix.scale(scale,scale,0f).translate(-target.pos.x,-target.pos.y,0f);
+    public void update() {
+        updateScale();
+        updateCurrentMatrix();
+        updateCurrentZone();
+        mainBatch.setProjectionMatrix(baseMatrix);
+        guiBatch.setProjectionMatrix(baseMatrix);
     }
 
-    private void updateCurrentZone(){
+    private void updateScale() {
+        scale = 1 / (target.getHeight() / SIZE_TARGET);
+    }
+
+    private void updateCurrentMatrix() {
+        currentMatrix.idt().set(baseMatrix);
+        currentMatrix.scale(scale, scale, 0f).translate(-target.pos.x, -target.pos.y, 0f);
+    }
+
+    private void updateCurrentZone() {
         currentZone.set(visualZone);
         currentZone.pos.set(target.pos);
-        currentZone.setSize(visualZone.getWidth()/scale,visualZone.getHeight()/scale);
+        currentZone.setSize(visualZone.getWidth() / scale, visualZone.getHeight() / scale);
     }
 
-    public void addVisualObject(iVisualObject object){
-        if(objectArrayList == null){
-            objectArrayList = new ArrayList<iVisualObject>();
+    public void setVisualZone(int width, int height) {
+        float aspect = (float) width / (float) height;
+        visualZone.setHeight(1f);
+        visualZone.setWidth(aspect * 1f);
+
+        MatrixUtils.calcTransitionMatrix(baseMatrix, visualZone, GL_RECT);
+
+        update();
+    }
+
+    public void setScale(float scale) {
+        this.scale = scale;
+    }
+
+    public void setTarget(iVisualObject target) {
+        if (target == null) {
+            this.target.pos.set(0, 0);
+        } else {
+            this.target = target.getRect();
         }
-        objectArrayList.add(object);
     }
 
-    public void cleanVisualObjects(){
-        if(objectArrayList == null){
-            objectArrayList = new ArrayList<iVisualObject>();
-        }
-        objectArrayList.clear();
-    }
-
-    public void addGuiVisualObject(GuiVisualObject object){
-        if(guiVisualObjects == null){
-            guiVisualObjects = new ArrayList<GuiVisualObject>();
-        }
-        guiVisualObjects.add(object);
-    }
-
-    public void dispose(){
-        mainBatch.dispose();
+    public void setVisualObjects(List<iVisualObject> objectArrayList) {
+        this.objectArrayList = objectArrayList;
     }
 }

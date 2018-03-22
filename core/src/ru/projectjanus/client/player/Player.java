@@ -8,44 +8,16 @@ import ru.projectjanus.client.substances.Substance;
 /**
  * Created by raultaylor.
  */
-
-public class Player extends Substance implements Movable{
-
+public class Player extends Substance implements Movable {
     private float density;
     private float speed;
     private Vector2 direction;
 
-    public void setSpeed(float speed){
-        this.speed = speed;
-    }
-
-    public float getDensity(){
-        return this.density;
-    }
-
-    public Player(){
+    public Player() {
         super();
         density = 0f;
         speed = 2f;
         direction = new Vector2();
-    }
-
-    public void update(float delta){
-        this.pos.mulAdd(direction,speed*delta);
-        //System.out.println(this.getSize() + " " + this.pos + " "+ getVolume());
-    }
-
-    public void addSubstance(int weight, float volume){
-        this.weight +=weight;
-        this.volume +=volume;
-        this.calcSize();
-        density = weight/volume;
-    }
-
-    @Override
-    public void set(Vector2 pos, int weight, float density, String myType) {
-        this.density = density;
-        super.set(pos, weight, density, myType);
     }
 
     @Override
@@ -58,5 +30,31 @@ public class Player extends Substance implements Movable{
     @Override
     public void stop() {
         direction.setZero();
+    }
+
+    @Override
+    public void set(Vector2 pos, int weight, float density, String myType) {
+        this.density = density;
+        super.set(pos, weight, density, myType);
+    }
+
+    public void addSubstance(int weight, float volume) {
+        this.weight += weight;
+        this.volume += volume;
+        this.calcSize();
+        density = weight / volume;
+    }
+
+    public void update(float delta) {
+        this.pos.mulAdd(direction, speed * delta);
+        //System.out.println(this.getSize() + " " + this.pos + " "+ getVolume());
+    }
+
+    public float getDensity() {
+        return this.density;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
     }
 }
