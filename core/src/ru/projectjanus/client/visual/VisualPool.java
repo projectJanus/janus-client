@@ -7,17 +7,15 @@ import ru.projectjanus.client.pool.Pool;
 /**
  * Created by raultaylor.
  */
-
 public class VisualPool extends Pool<VisualObject> {
-
-    public void drawAllActiveOjects(SpriteBatch batch){
-        for(VisualObject object: this.activeObjects){
-            object.draw(batch);
-        }
-    }
-
     @Override
     protected VisualObject newObject() {
         return new VisualObject();
+    }
+
+    public void drawAllActiveOjects(SpriteBatch batch) {
+        for (VisualObject object : this.activeObjects) {
+            object.draw(batch);
+        }
     }
 }

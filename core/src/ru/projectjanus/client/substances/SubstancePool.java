@@ -5,9 +5,7 @@ import ru.projectjanus.client.pool.Pool;
 /**
  * Created by raultaylor.
  */
-
 public class SubstancePool extends Pool {
-
     @Override
     protected Substance newObject() {
         return new Substance();
