@@ -14,8 +14,6 @@ import ru.projectjanus.client.ui.GuiVisualObject;
  * Created by raultaylor.
  */
 public class Camera {
-    private final float SIZE_TARGET = 0.12f;
-    private final Rect GL_RECT = new Rect(0, 0, 1f, 1f);
     private float scale;
     private Rect visualZone;
     private Rect currentZone;
@@ -27,6 +25,8 @@ public class Camera {
     private SpriteBatch mainBatch;
     private SpriteBatch guiBatch;
     private long deltaTimer;
+    private final float SIZE_TARGET = 0.12f;
+    private final Rect GL_RECT = new Rect(0, 0, 1f, 1f);
 
     public Camera() {
 
@@ -106,16 +106,6 @@ public class Camera {
 
     }
 
-    public void setVisualZone(int width, int height) {
-        float aspect = (float) width / (float) height;
-        visualZone.setHeight(1f);
-        visualZone.setWidth(aspect * 1f);
-
-        MatrixUtils.calcTransitionMatrix(baseMatrix, visualZone, GL_RECT);
-
-        update();
-    }
-
     public void update() {
         updateScale();
         updateCurrentMatrix();
@@ -137,6 +127,16 @@ public class Camera {
         currentZone.set(visualZone);
         currentZone.pos.set(target.pos);
         currentZone.setSize(visualZone.getWidth() / scale, visualZone.getHeight() / scale);
+    }
+
+    public void setVisualZone(int width, int height) {
+        float aspect = (float) width / (float) height;
+        visualZone.setHeight(1f);
+        visualZone.setWidth(aspect * 1f);
+
+        MatrixUtils.calcTransitionMatrix(baseMatrix, visualZone, GL_RECT);
+
+        update();
     }
 
     public void setScale(float scale) {

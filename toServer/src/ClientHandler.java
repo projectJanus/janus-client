@@ -15,7 +15,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<setDirection> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, setDirection msg) throws Exception {
         //Печатаем в консоль дынне для проверки
-        System.out.println("Клиент получил сообщение DirectionX: " + msg.getDirectionX() + " DirectionY: " + msg.getDirectionY());
+        //System.out.println("Клиент получил сообщение DirectionX: " + msg.getDirectionX() + " DirectionY: " + msg.getDirectionY());
     }
 
     @Override

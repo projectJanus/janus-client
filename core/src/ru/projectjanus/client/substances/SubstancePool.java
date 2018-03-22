@@ -7,12 +7,12 @@ import ru.projectjanus.client.pool.Pool;
  */
 public class SubstancePool extends Pool {
     @Override
-    protected Substance newObject() {
-        return new Substance();
+    public Substance obtain() {
+        return (Substance) super.obtain();
     }
 
     @Override
-    public Substance obtain() {
-        return (Substance) super.obtain();
+    protected Substance newObject() {
+        return new Substance();
     }
 }

@@ -28,6 +28,28 @@ public class GameScreen extends Base2DScreen {
     }
 
     @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        myTouchPad.touchDown(screenX, screenY, pointer);
+        checkBox2.touchDown(screenX, screenY, pointer);
+        checkBox1.touchDown(screenX, screenY, pointer);
+        return super.touchDown(screenX, screenY, pointer, button);
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        myTouchPad.touchUp(screenX, screenY, pointer);
+        checkBox2.touchUp(screenX, screenY, pointer);
+        checkBox1.touchUp(screenX, screenY, pointer);
+        return super.touchUp(screenX, screenY, pointer, button);
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        myTouchPad.touchDragged(screenX, screenY, pointer);
+        return super.touchDragged(screenX, screenY, pointer);
+    }
+
+    @Override
     public void show() {
         this.init();
         super.show();
@@ -78,27 +100,5 @@ public class GameScreen extends Base2DScreen {
     @Override
     public void dispose() {
         super.dispose();
-    }
-
-    @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        myTouchPad.touchDown(screenX, screenY, pointer);
-        checkBox2.touchDown(screenX, screenY, pointer);
-        checkBox1.touchDown(screenX, screenY, pointer);
-        return super.touchDown(screenX, screenY, pointer, button);
-    }
-
-    @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        myTouchPad.touchUp(screenX, screenY, pointer);
-        checkBox2.touchUp(screenX, screenY, pointer);
-        checkBox1.touchUp(screenX, screenY, pointer);
-        return super.touchUp(screenX, screenY, pointer, button);
-    }
-
-    @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
-        myTouchPad.touchDragged(screenX, screenY, pointer);
-        return super.touchDragged(screenX, screenY, pointer);
     }
 }

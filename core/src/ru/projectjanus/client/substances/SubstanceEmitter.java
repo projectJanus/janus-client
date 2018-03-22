@@ -15,6 +15,12 @@ public class SubstanceEmitter {
     public static final int HEAVY_TYPE = 3;
     public static final int LIGHT_TYPE = 1;
     public static final int MEDIUM_TYPE = 2;
+    private long deltaTimer;
+    private int countAdd;
+    private int currentStage = 0;
+    private World myWorld;
+    private Vector2 tempPos = new Vector2();
+    private SubstancePool substancePool;
     //Stages
     private static final int[] COUNT_FREE_SUBSTANCE = {150, 140, 120, 110, 100, 80};
     private static final int[] WEIGHT_SUBSTANCE = {1, 5, 10, 25, 50, 200};
@@ -27,12 +33,6 @@ public class SubstanceEmitter {
     //LIGHT_TYPE DENSITY
     private static final float LIGHT_DENSITY = 0.5f;
     private static final String LIGHT_NAME_TYPE = "light_subst";
-    private World myWorld;
-    private int currentStage = 0;
-    private Vector2 tempPos = new Vector2();
-    private SubstancePool substancePool;
-    private long deltaTimer;
-    private int countAdd;
 
     public SubstanceEmitter(World myWorld) {
         this.myWorld = myWorld;

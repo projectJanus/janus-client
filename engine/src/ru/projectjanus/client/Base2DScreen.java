@@ -13,7 +13,6 @@ import ru.projectjanus.client.math.Rect;
 import ru.projectjanus.client.ui.GuiHandler;
 
 public class Base2DScreen implements Screen, InputProcessor {
-    private final Vector2 touch = new Vector2();
     protected Game game;
     protected Rect worldBounds; // границы проекции мировых координат
     protected Matrix4 worldToGl;
@@ -21,6 +20,7 @@ public class Base2DScreen implements Screen, InputProcessor {
     protected Camera camera = new Camera();
     private Rect glBounds; // дефолтные границы проекции мир - gl
     private Rect screenBounds; // границы области рисования в пикселях
+    private final Vector2 touch = new Vector2();
 
     public Base2DScreen(Game game) {
         this.game = game;

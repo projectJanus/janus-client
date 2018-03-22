@@ -10,8 +10,8 @@ import ru.projectjanus.client.substances.Substance;
  */
 public class Player extends Substance implements Movable {
     private float density;
-    private Vector2 direction;
     private float speed;
+    private Vector2 direction;
 
     public Player() {
         super();

@@ -14,6 +14,10 @@ import ru.projectjanus.client.visual.VisualPool;
  * Created by raultaylor.
  */
 public class VisualController {
+    private long deltaTimer;
+    private VisualPool visualPool;
+    private VisualData visualData;
+    private ArrayList<Linkable> newLinks;
     private static TextureAtlas worldAtlas;
     private static TextureAtlas solarisAtlas;
     private static HashMap<String, TextureAtlas> atlasMap;
@@ -27,10 +31,6 @@ public class VisualController {
         atlasMap.put("light_subst", solarisAtlas);
         atlasMap.put("medium_subst", solarisAtlas);
     }
-    private VisualPool visualPool;
-    private VisualData visualData;
-    private ArrayList<Linkable> newLinks;
-    private long deltaTimer;
 
     public VisualController(VisualData visualData) {
         visualPool = new VisualPool();

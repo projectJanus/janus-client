@@ -6,9 +6,9 @@ import com.badlogic.gdx.math.Vector2;
  * Created by raultaylor.
  */
 public class Circle {
-    private static Vector2 temp = new Vector2();
     protected float size;
     protected Vector2 pos;
+    private static Vector2 temp = new Vector2();
 
     public Circle() {
         size = 0f;

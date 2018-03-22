@@ -7,16 +7,17 @@ import io.netty.channel.socket.nio.NioDatagramChannel;
 /**
  * Created by A. Bashilov on 20/03/18
  * <p>
- * Class contain UDP client parameters and method:
+ * Class contains UDP client parameters and method:
  * {@link #start()} for open connection with server
  * and parameters of channel:
  * PORT = {@link #PORT}
  * HOST = {@link #HOST}
  */
 public class Client {
+    //Сделал статическим для доступности, так как через канал отправляется данные методом writeAndFlush
+    public static Channel channel;
     static final int PORT = 9999;
     static final String HOST = "192.168.0.102";
-    public static Channel channel; //Сделал статическим для доступности, так как через канал отправляется данные методом writeAndFlush
 
     public void start() throws Exception {
         EventLoopGroup group = new NioEventLoopGroup();

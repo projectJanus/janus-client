@@ -15,14 +15,14 @@ import ru.projectjanus.client.visual.VisualData;
  * Created by raultaylor.
  */
 public class World extends Circle implements Linkable {
-    private static final float DENSITY = 0.02f;
-    private final String myType = "world";
     private long weight;
     private VisualData visualData;
     private List<Substance> allSubstance;
     private SubstanceEmitter substanceEmitter;
     private ArrayList<Player> players;
     private CollisionController collisionController;
+    private static final float DENSITY = 0.02f;
+    private final String myType = "world";
 
     public World(VisualData visualData) {
         size = 59.16f;
