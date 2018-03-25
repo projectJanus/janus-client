@@ -7,9 +7,7 @@ import ru.projectjanus.client.math.Rect;
 /**
  * Created by raultaylor.
  */
-
 public interface iVisualObject {
-
     void draw(SpriteBatch batch);
 
     Rect getRect();

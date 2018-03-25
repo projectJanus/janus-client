@@ -1,5 +1,4 @@
 buildscript {
-    
 
     repositories {
         mavenLocal()
@@ -42,7 +41,7 @@ project(":desktop") {
         compile project(":core")
         compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-        
+
     }
 }
 
@@ -59,18 +58,17 @@ project(":android") {
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-arm64-v8a"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86_64"
-        
+
     }
 }
 
 project(":core") {
     apply plugin: "java"
 
-
     dependencies {
         compile project(":engine")
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        
+
     }
 }
 
@@ -82,7 +80,15 @@ project(":engine") {
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+    }
+}
 
+project(":toServer"){
+    apply plugin: "java"
+    sourceSets.main.java.srcDirs = [ "src/" ]
+    dependencies{
+        compile group: 'io.netty', name: 'netty-all', version: '4.1.22.Final'
+        compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.5.1'
     }
 }
 

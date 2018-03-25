@@ -13,18 +13,13 @@ import ru.projectjanus.client.world.World;
 /**
  * Created by raultaylor.
  */
-
 public class GameScreen extends Base2DScreen {
-
     private TextureAtlas atlas;
     private World world;
-
     private Player player;
     private VisualController visualController;
     private VisualData visualData;
-
     private MyTouchPad myTouchPad;
-
     private CheckBox checkBox1;
     private CheckBox checkBox2;
 
@@ -32,14 +27,41 @@ public class GameScreen extends Base2DScreen {
         super(game);
     }
 
-    private void init(){
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        myTouchPad.touchDown(screenX, screenY, pointer);
+        checkBox2.touchDown(screenX, screenY, pointer);
+        checkBox1.touchDown(screenX, screenY, pointer);
+        return super.touchDown(screenX, screenY, pointer, button);
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        myTouchPad.touchUp(screenX, screenY, pointer);
+        checkBox2.touchUp(screenX, screenY, pointer);
+        checkBox1.touchUp(screenX, screenY, pointer);
+        return super.touchUp(screenX, screenY, pointer, button);
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        myTouchPad.touchDragged(screenX, screenY, pointer);
+        return super.touchDragged(screenX, screenY, pointer);
+    }
+
+    @Override
+    public void show() {
+        this.init();
+        super.show();
+    }
+
+    private void init() {
         atlas = new TextureAtlas("solarisAtlas.tpack");
         visualData = new VisualData();
 
-
         world = new World(visualData);
         player = new Player();
-        player.set(new Vector2(0,0),10,1.0f,"player");
+        player.set(new Vector2(0, 0), 10, 1.0f, "player");
         player.setSpeed(25f);
 
         world.addPlayer(player);
@@ -59,34 +81,6 @@ public class GameScreen extends Base2DScreen {
         camera.addGuiVisualObject(myTouchPad);
         camera.addGuiVisualObject(checkBox1);
         camera.addGuiVisualObject(checkBox2);
-    }
-
-    @Override
-    public void show() {
-        this.init();
-        super.show();
-    }
-
-    @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        myTouchPad.touchDown(screenX,screenY,pointer);
-        checkBox2.touchDown(screenX,screenY,pointer);
-        checkBox1.touchDown(screenX,screenY,pointer);
-        return super.touchDown(screenX, screenY, pointer, button);
-    }
-
-    @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        myTouchPad.touchUp(screenX,screenY,pointer);
-        checkBox2.touchUp(screenX,screenY,pointer);
-        checkBox1.touchUp(screenX,screenY,pointer);
-        return super.touchUp(screenX, screenY, pointer, button);
-    }
-
-    @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
-        myTouchPad.touchDragged(screenX,screenY,pointer);
-        return super.touchDragged(screenX, screenY, pointer);
     }
 
     @Override

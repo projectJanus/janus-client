@@ -6,30 +6,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
 import ru.projectjanus.client.visual.VisualData;
 import ru.projectjanus.client.visual.VisualObject;
 import ru.projectjanus.client.visual.VisualPool;
 
-
 /**
  * Created by raultaylor.
  */
-
 public class VisualController {
-
+    private long deltaTimer;
     private VisualPool visualPool;
-
     private VisualData visualData;
     private ArrayList<Linkable> newLinks;
-
     private static TextureAtlas worldAtlas;
     private static TextureAtlas solarisAtlas;
-
     private static HashMap<String, TextureAtlas> atlasMap;
-
-    private long deltaTimer;
-
     static {
         worldAtlas = new TextureAtlas("worldAtlas.tpack");
         solarisAtlas = new TextureAtlas("solarisAtlas.tpack");
@@ -47,20 +38,16 @@ public class VisualController {
         newLinks = new ArrayList<Linkable>();
     }
 
+    public void addOnCamera(Camera camera) {
+        camera.cleanVisualObjects();
+        for (VisualObject obj : getActiveObjects()) {
+            camera.addVisualObject(obj);
+        }
+    }
+
     public List<VisualObject> getActiveObjects() {
         updateObjects();
         return visualPool.getActiveObjects();
-    }
-
-    public VisualObject findAndGetPlayer() {
-        VisualObject playerVO = null;
-        for (VisualObject obj : visualPool.getActiveObjects()) {
-            if (obj.getLink().getNameType() == "player") {
-                playerVO = obj;
-                break;
-            }
-        }
-        return playerVO;
     }
 
     public void updateObjects() {
@@ -126,15 +113,19 @@ public class VisualController {
 
     }
 
-    public void addOnCamera(Camera camera) {
-        camera.cleanVisualObjects();
-        for (VisualObject obj : getActiveObjects()) {
-            camera.addVisualObject(obj);
-        }
-    }
-
     private void set(Linkable link) {
         VisualObject visualObject = visualPool.obtain();
         visualObject.set(link, atlasMap.get(link.getNameType()));
+    }
+
+    public VisualObject findAndGetPlayer() {
+        VisualObject playerVO = null;
+        for (VisualObject obj : visualPool.getActiveObjects()) {
+            if (obj.getLink().getNameType() == "player") {
+                playerVO = obj;
+                break;
+            }
+        }
+        return playerVO;
     }
 }
